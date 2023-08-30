@@ -1,8 +1,19 @@
-h1 {
+h1, h3 {
   text-align: center;
 }
 
+h3 {
+  position: fixed;
+  top: 50%; /* Center the h3 vertically */
+  left: 50%; /* Center the h3 horizontally */
+  transform: translate(-50%, -50%); /* Center the h3 accurately */
+  background-color: white; /* Give the h3 a white background */
+  padding: 10px; /* Add padding for better readability */
+  border: 1px solid black; /* Add a border for styling */
+}
+
 #main-board {
+  margin-top: 70px;
   width: fit-content;
   height: fit-content;
   margin-left: auto;
