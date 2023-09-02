@@ -49,11 +49,11 @@ function createSquare(row, col, currentMainRow) {
 
 function squareClicker(event) {
   const targetElement = event.target;
+  const row = targetElement.dataset.row;
+  const col = targetElement.dataset.col;
 
   //Only change the square if it hasn't been clicked
-  if (!targetElement.classList.contains("hit") && !targetElement.classList.contains("miss")) {
-    const row = targetElement.dataset.row;
-    const col = targetElement.dataset.col;
+  if (row !== undefined && col !== undefined && !targetElement.classList.contains("hit") && !targetElement.classList.contains("miss")) {
     const hitOrMiss = board.makeHit(row, col);
     if (hitOrMiss === null) {
       targetElement.classList.add('miss');
@@ -75,4 +75,33 @@ function handleGameOver() {
   h3.textContent = "YOU WIN!";
   h1.insertAdjacentElement("afterend", h3);
   boardContainer.removeEventListener('click', squareClicker)
+}
+
+//reset button
+const reset = document.createElement('button');
+reset.setAttribute('id', 'reset-game');
+reset.textContent = "Reset Game";
+const h1 = document.querySelector('h1');
+h1.insertAdjacentElement("afterend", reset);
+reset.addEventListener("click", cleanTheBoard)
+
+function cleanTheBoard() {
+  for (const row of boardContainer.children) {
+    for (const square of row.children) {
+
+      //remove the clicks on all the squares
+      square.classList.remove('hit');
+      square.classList.remove('miss');
+      square.textContent = "";
+
+      //reset the ships
+      board.grid = board.populateGrid();
+      board.numRemaining = 17;
+    }
+  }
+  const h3 = document.querySelector('h3');
+  if (h3) {
+    h3.remove();
+  };
+  boardContainer.addEventListener('click', squareClicker);
 }

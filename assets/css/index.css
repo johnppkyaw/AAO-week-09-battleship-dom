@@ -1,3 +1,9 @@
+body{
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+}
+
 h1, h3 {
   text-align: center;
 }
@@ -13,7 +19,7 @@ h3 {
 }
 
 #main-board {
-  margin-top: 70px;
+  margin-top: 20px;
   width: fit-content;
   height: fit-content;
   margin-left: auto;
@@ -46,4 +52,10 @@ h3 {
 
 .hit {
   background-color: green;
+}
+
+#reset-game{
+  margin-left: auto;
+  margin-right: auto;
+  align-content: center;
 }
